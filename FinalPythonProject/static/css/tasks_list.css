@@ -1,0 +1,72 @@
+h1{
+    color:rgb(10, 46, 63);
+}
+h2{
+    color:rgb(13, 63, 88);
+}
+p{
+    font-size: 20px;
+    color: rgb(3, 33, 48);
+}
+#p_status{
+    color: gray;
+    font-weight: 600;
+}
+option{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size:15px;
+    height:10px;
+}
+#big_div{
+    display:flex;
+    gap:8px;
+    flex-direction: column;
+    margin-top:10px;
+}
+#task_div{
+    width: 85%;
+    border:solid 2px rgb(12, 145, 211) ;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+button{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 22px;
+    background-color: rgb(169, 231, 252);
+    border: solid 1px blue;
+    border-radius: 7px;
+    padding:5px;
+}
+#finish_btn{
+    background-color:yellow;
+    border: solid 1px rgb(194, 208, 3);
+}
+#finish_btn:hover{
+    background-color: rgb(231, 248, 1);
+}
+#choose_btn{
+    border: solid 1px rgb(248, 172, 85);
+    background-color: rgb(252, 211, 164);
+}
+#choose_btn:hover{
+   background-color: rgb(249, 192, 127);
+}
+#new_task_a{
+    border: solid 1px pink;
+    border-radius: 7px;
+    padding:7px;
+    background-color: rgb(169, 231, 252);
+    text-decoration: none;
+    margin-top: -30px;
+    margin-left:68.5%;
+}
+
+.blue_btn:hover{
+    background-color: rgb(121, 215, 246);
+}
+#filter_btn:hover{
+    background-color: rgb(121, 215, 255);
+}

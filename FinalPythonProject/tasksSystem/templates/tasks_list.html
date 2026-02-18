@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks List</title>
+    <link rel="stylesheet" href="{% static 'css/tasks_list.css' %}">
+</head>
+<body>
+    <h1>you are connected by: {{user.fullName}}</h1>
+    <h2>{% if user.isAdmin %}Teamhead{% endif %} Team: {{user.teamName}}</h2>
+
+    {% if user.isAdmin %}
+        <a href="{% url 'add_task' %}" id="new_task_a">+ Add New Task</a>
+    {% endif %}
+
+    <form method="GET">
+         <label>status: </label>
+         <select name="status">
+         <option value="">all</option>
+         <option value="new">new</option>
+         <option value="in proccess">in_process</option>
+         <option value="finish">finish</option>
+         </select>
+         <label>perform employee:</label>
+         <select name="user_id">
+         <option value="">all</option>
+         {% for u in users %}
+            <option value="{{ u.id }}">{{ u.fullName }}</option>
+         {% endfor %}
+        </select>
+        <button type="submit" id="filter_btn">filter tasks</button>
+    </form>
+
+
+<div id="big_div">
+    {% for task in list %}
+            <div id="task_div">
+                <p>Task: {{task.name}}, description: {{task.description}} ; </p>
+                <p id="p_status" style="color: {% if task.status == 'new'%} rgb(211, 12, 211) {% elif task.status == 'in proccess' %}rgb(235, 81, 107) {% else %}rgb(9, 243, 9){% endif %}">status: {{task.status}} </p>
+                {% if task.user_id %}<p>perform user: {{task.user.fullName}}</p>{% endif %}
+                {% if user.isAdmin and task.user_id == null%}
+                    <form action="{% url 'delete_task' task.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="blue_btn">❌</button>
+                    </form>
+                        <a href="{% url 'edit_task' task.id %}" ><button type="button" class="blue_btn">🎨</button></a>
+                    {% endif %}
+                    <form action="{% url 'change_status' task.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if task.status == "new"%}
+                            <button type="submit" id="choose_btn">📝 choose task </button>
+                        {%elif task.status == 'in proccess' and task.user_id == user.id%}
+                            <button type="submit" id="finish_btn">✔ I finished </button>
+                        {% endif %}
+                    </form>
+
+            </div>
+
+    {% endfor %}
+</div>
+
+</body>
+</html>

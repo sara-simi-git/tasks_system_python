@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+</head>
+<body>
+<h2>Register to the tasks system</h2>
+<form action="/register/" method="post">
+    {% csrf_token %}
+    <input type="number" placeholder="Enter Id" name="id" required>
+    <input type="text" placeholder="Enter full name" name="fullName" required>
+    <input type="text" placeholder="Enter password" name="password" required>
+    <input type="number" placeholder="Enter phone" name="phone" required>
+    <select name="team">
+        {% for team in teams%}
+            <option name="team">{{team}}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Submit" id="submit">
+</form>
+</body>
+</html>
